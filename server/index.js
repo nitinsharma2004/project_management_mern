@@ -27,7 +27,7 @@ const port = 8700;
 
 const connect = () => {
     mongoose.set('strictQuery', true);
-    mongoose.connect(`mongodb+srv://ns:nitins@cluster0.4uysckg.mongodb.net/vexa?retryWrites=true&w=majority&appName=Cluster0`).then(() => {
+    mongoose.connect(``).then(() => {
         console.log('MongoDB connected');
     }).catch((err) => {
         console.log(err);

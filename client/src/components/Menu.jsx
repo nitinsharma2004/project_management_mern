@@ -156,7 +156,7 @@ const Menu = ({ darkMode, setDarkMode, setMenuOpen, setNewTeam }) => {
         <Link to="/" style={{ textDecoration: "none", color: "inherit", alignItems: 'center',display: 'flex' }}>
           <Logo>
             <Image src={LogoIcon} />
-            VEXA
+            Project Nexus
           </Logo>
         </Link>
         <Close>

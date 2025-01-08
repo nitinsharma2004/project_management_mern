@@ -1,11 +1,6 @@
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
-//https://vexa-server.herokuapp.com/api
-//http://localhost:8800/api/
-//https://dull-blue-dolphin-tutu.cyclic.app
-//https://project-management-app-production-3d51.up.railway.app/api/
-//http://localhost:8700/api/
-//https://vexa.onrender.com/
+
 const API = axios.create({ baseURL: `http://localhost:8700/api/` }); 
 
 

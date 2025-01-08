@@ -23,26 +23,21 @@ const transporter = nodemailer.createTransport({
 
 export const signup = async (req, res, next) => {
     const { email } = req.body
-    // Check we have an email
     if (!email) {
         return res.status(422).send({ message: "Missing email." });
     }
     try {
-        // Check if the email is in use
         const existingUser = await User.findOne({ email }).exec();
         if (existingUser) {
             return res.status(409).send({
                 message: "Email is already in use."
             });
         }
-        // Step 1 - Create and save the userconst salt = bcrypt.genSaltSync(10);
         const salt = bcrypt.genSaltSync(10);
         const hashedPassword = bcrypt.hashSync(req.body.password, salt);
         const newUser = new User({ ...req.body, password: hashedPassword });
 
         newUser.save().then((user) => {
-
-            // create jwt token
             const token = jwt.sign({ id: user._id }, process.env.JWT, { expiresIn: "9999 years" });
             res.status(200).json({ token, user });
         }).catch((err) => {
@@ -59,7 +54,7 @@ export const signin = async (req, res, next) => {
         if (!user) {
             return next(createError(201, "User not found"));
         }
-        if (user.googleSignIn) {
+        if (user.googleSignIn) { 
             return next(createError(201, "Entered email is Signed Up with google account. Please SignIn with google."));
         }
         const validPassword = await bcrypt.compareSync(req.body.password, user.password);
@@ -67,7 +62,6 @@ export const signin = async (req, res, next) => {
             return next(createError(201, "Wrong password"));
         }
 
-        // create jwt token
         const token = jwt.sign({ id: user._id }, process.env.JWT, { expiresIn: "9999 years" });
         res.status(200).json({ token, user });
 
@@ -106,20 +100,6 @@ export const logout = (req, res) => {
     res.clearCookie("access_token").json({ message: "Logged out" });
 }
 
-
-/*
-Welcome template
-<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f9f9f9; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDHQMmI5x5qWbOrEuJuFWkSIBQoT_fFyoKOKYqOSoIvQ&s" alt="VEXA Logo" style="display: block; margin: 0 auto; max-width: 200px; margin-bottom: 20px;">
-        <h1 style="color: #007bff; text-align: center; margin-bottom: 20px;">Welcome to VEXA!</h1>
-        <p style="font-size: 14px; margin-bottom: 20px;">Dear User,</p>
-        <p style="font-size: 14px; margin-bottom: 20px;">Thank you for choosing VEXA to manage your tasks. We're excited to have you on board and look forward to helping you be more productive.</p>
-        <p style="font-size: 14px; margin-bottom: 20px;">To get started, simply log in to your account using your email address and the password you set up during registration.</p>
-        <p style="font-size: 14px; margin-bottom: 20px;">If you have any questions or need assistance, please don't hesitate to contact our support team. We're here to help!</p>
-        <br>
-        <p style="font-size: 16px; margin-bottom: 20px;">Best regards,</p>
-        <p style="font-size: 16px; margin-bottom: 20px;">The VEXA Team</p>
-    </div> */
 
 export const generateOTP = async (req, res,next) => {
     console.log("enter generateotp");

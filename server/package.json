@@ -8,7 +8,7 @@
     "start": "nodemon server.js",
     "dev": "nodemon index.js"
   },
-  "author": "rishav",
+  "author": "Nitin",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",

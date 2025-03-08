@@ -74,7 +74,7 @@ const Chats = () => {
 
   return (
     <Container>
-      <Wrapper>
+     <Wrapper>
         {width < breakpoint ?
           (showChat ?
             <ChatContainer showChat={showChat} setShowChat={setShowChat} />
@@ -90,7 +90,7 @@ const Chats = () => {
               </ChatsContainer>
             </>
           )}
-      </Wrapper>
+      </Wrapper> 
     </Container>
   )
 }

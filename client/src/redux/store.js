@@ -1,4 +1,4 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import { configureStore, combineReducers, getDefaultMiddleware } from "@reduxjs/toolkit";
 import userReducer from "./userSlice";
 import snackbarReducer from "./snackbarSlice";
 import {

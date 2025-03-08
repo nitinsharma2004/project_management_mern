@@ -5,13 +5,11 @@ import authRoutes from './routes/auth.js';
 import userRoutes from './routes/user.js';
 import projectRoutes from './routes/project.js';
 import teamRoutes from './routes/teams.js';
-import cookieParser from "cookie-parser";
 import cors from 'cors';
 import morgan from 'morgan';
 const app = express();
 dotenv.config();
 
-/** Middlewares */
 app.use(express.json());
 const corsConfig = {
     credentials: true,

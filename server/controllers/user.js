@@ -46,7 +46,6 @@ export const findUser = async (req, res, next) => {
 }
 
 export const getUser = async (req, res, next) => {
-  //if the req.user id is not present then it will give a message of user not authenticated 
 
   try {
     const user = await User.findById(req.user.id).populate("notifications").populate({
@@ -56,7 +55,6 @@ export const getUser = async (req, res, next) => {
         select: "_id name email",
       }
     }).populate("projects").populate("works").populate("tasks");
-    //extract the notification from the user and send it to the client
     console.log(user)
     res.status(200).json(user);
   } catch (err) {
@@ -105,7 +103,7 @@ export const getWorks = async (req, res, next) => {
           select: "name img",
         }
       })
-      .sort({ updatedAt: -1 });;
+      .sort({ updatedAt: -1 });
     if (!user) return next(createError(404, "User not found!"));
     //store all the works of the user in an array and send it to the client
     const works = [];

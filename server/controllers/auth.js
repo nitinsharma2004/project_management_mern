@@ -112,8 +112,8 @@ export const generateOTP = async (req, res,next) => {
         subject: 'Account Verification OTP',
         html: `
         <div style="font-family: Poppins, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f9f9f9; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDHQMmI5x5qWbOrEuJuFWkSIBQoT_fFyoKOKYqOSoIvQ&s" alt="VEXA Logo" style="display: block; margin: 0 auto; max-width: 200px; margin-bottom: 20px;">
-    <h1 style="font-size: 22px; font-weight: 500; color: #854CE6; text-align: center; margin-bottom: 30px;">Verify Your VEXA Account</h1>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDHQMmI5x5qWbOrEuJuFWkSIBQoT_fFyoKOKYqOSoIvQ&s" alt="PROJECT NEXUS Logo" style="display: block; margin: 0 auto; max-width: 200px; margin-bottom: 20px;">
+    <h1 style="font-size: 22px; font-weight: 500; color: #854CE6; text-align: center; margin-bottom: 30px;">Verify Your PROJECT NEXUS Account</h1>
     <div style="background-color: #FFF; border: 1px solid #e5e5e5; border-radius: 5px; box-shadow: 0px 3px 6px rgba(0,0,0,0.05);">
         <div style="background-color: #854CE6; border-top-left-radius: 5px; border-top-right-radius: 5px; padding: 20px 0;">
             <h2 style="font-size: 28px; font-weight: 500; color: #FFF; text-align: center; margin-bottom: 10px;">Verification Code</h2>
@@ -121,10 +121,10 @@ export const generateOTP = async (req, res,next) => {
         </div>
         <div style="padding: 30px;">
             <p style="font-size: 14px; color: #666; margin-bottom: 20px;">Dear ${name},</p>
-            <p style="font-size: 14px; color: #666; margin-bottom: 20px;">Thank you for creating a VEXA account. To activate your account, please enter the following verification code:</p>
+            <p style="font-size: 14px; color: #666; margin-bottom: 20px;">Thank you for creating a PROJECT NEXUS account. To activate your account, please enter the following verification code:</p>
             <p style="font-size: 20px; font-weight: 500; color: #666; text-align: center; margin-bottom: 30px; color: #854CE6;">${req.app.locals.OTP}</p>
-            <p style="font-size: 12px; color: #666; margin-bottom: 20px;">Please enter this code in the VEXA app to activate your account.</p>
-            <p style="font-size: 12px; color: #666; margin-bottom: 20px;">If you did not create a VEXA account, please disregard this email.</p>
+            <p style="font-size: 12px; color: #666; margin-bottom: 20px;">Please enter this code in the PROJECT NEXUS app to activate your account.</p>
+            <p style="font-size: 12px; color: #666; margin-bottom: 20px;">If you did not create a PROJECT NEXUS account, please disregard this email.</p>
         </div>
     </div>
     <br>
@@ -138,8 +138,8 @@ export const generateOTP = async (req, res,next) => {
         subject: 'VEXA Reset Password Verification',
         html: `
             <div style="font-family: Poppins, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f9f9f9; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDHQMmI5x5qWbOrEuJuFWkSIBQoT_fFyoKOKYqOSoIvQ&s" alt="VEXA Logo" style="display: block; margin: 0 auto; max-width: 200px; margin-bottom: 20px;">
-                <h1 style="font-size: 22px; font-weight: 500; color: #854CE6; text-align: center; margin-bottom: 30px;">Reset Your VEXA Account Password</h1>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDHQMmI5x5qWbOrEuJuFWkSIBQoT_fFyoKOKYqOSoIvQ&s" alt="PROJECT NEXUS Logo" style="display: block; margin: 0 auto; max-width: 200px; margin-bottom: 20px;">
+                <h1 style="font-size: 22px; font-weight: 500; color: #854CE6; text-align: center; margin-bottom: 30px;">Reset Your PROJECT NEXUS Account Password</h1>
                 <div style="background-color: #FFF; border: 1px solid #e5e5e5; border-radius: 5px; box-shadow: 0px 3px 6px rgba(0,0,0,0.05);">
                     <div style="background-color: #854CE6; border-top-left-radius: 5px; border-top-right-radius: 5px; padding: 20px 0;">
                         <h2 style="font-size: 28px; font-weight: 500; color: #FFF; text-align: center; margin-bottom: 10px;">Verification Code</h2>
@@ -147,14 +147,14 @@ export const generateOTP = async (req, res,next) => {
                     </div>
                     <div style="padding: 30px;">
                         <p style="font-size: 14px; color: #666; margin-bottom: 20px;">Dear ${name},</p>
-                        <p style="font-size: 14px; color: #666; margin-bottom: 20px;">To reset your VEXA account password, please enter the following verification code:</p>
+                        <p style="font-size: 14px; color: #666; margin-bottom: 20px;">To reset your PROJECT NEXUS account password, please enter the following verification code:</p>
                         <p style="font-size: 20px; font-weight: 500; color: #666; text-align: center; margin-bottom: 30px; color: #854CE6;">${req.app.locals.OTP}</p>
-                        <p style="font-size: 12px; color: #666; margin-bottom: 20px;">Please enter this code in the VEXA app to reset your password.</p>
+                        <p style="font-size: 12px; color: #666; margin-bottom: 20px;">Please enter this code in the PROJECT NEXUS app to reset your password.</p>
                         <p style="font-size: 12px; color: #666; margin-bottom: 20px;">If you did not request a password reset, please disregard this email.</p>
                     </div>
                 </div>
                 <br>
-                <p style="font-size: 16px; color: #666; margin-bottom: 20px; text-align: center;">Best regards,<br>The VEXA Team</p>
+                <p style="font-size: 16px; color: #666; margin-bottom: 20px; text-align: center;">Best regards,<br>The PROJECT NEXUS Team</p>
             </div>
         `
     };
@@ -167,7 +167,6 @@ export const generateOTP = async (req, res,next) => {
             }
         })
     } else {
-        console.log("enter else");
         transporter.sendMail(verifyOtp, (err) => {
             if (err) {
                 next(err)

@@ -88,7 +88,7 @@ function Footer() {
         <SocialMediaIcon href="#"><InstagramIcon /></SocialMediaIcon>
       </SocialMediaIcons>
       <Copyright>
-        &copy; 2023 Vexa. All rights reserved.
+        &copy; 2024 Project Nexus. All rights reserved.
       </Copyright>
     </FooterContainer>
   );

@@ -18,7 +18,7 @@ import {
   AddTaskRounded,
 } from "@mui/icons-material";
 import { tagColors } from "../data/data";
-import LogoIcon from "../Images/Logo.svg";
+import LogoIcon from "../Images/Logo.jpg";    
 import { useDispatch } from "react-redux";
 import { logout } from "../redux/userSlice";
 import { openSnackbar } from "../redux/snackbarSlice";

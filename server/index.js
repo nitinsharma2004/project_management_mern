@@ -3,11 +3,12 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import authRoutes from './routes/auth.js';
 import userRoutes from './routes/user.js';
+import messageRouter from './routes/message.route.js'
 import projectRoutes from './routes/project.js';
 import teamRoutes from './routes/teams.js';
 import cors from 'cors';
 import morgan from 'morgan';
-const app = express();
+import { app,server } from './SocketIO/server.js';
 dotenv.config();
 
 app.use(express.json());
@@ -35,6 +36,7 @@ const connect = () => {
 
 app.use(express.json())
 
+app.use("/api/message",messageRouter)
 app.use("/api/auth", authRoutes)
 app.use("/api/users", userRoutes)
 app.use("/api/project", projectRoutes)
@@ -49,7 +51,7 @@ app.use((err, req, res, next)=>{
     })
 })
 
-app.listen(port,()=>{
+server.listen(port,()=>{
     console.log("Connected")
     connect();
 })

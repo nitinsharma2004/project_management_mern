@@ -11,7 +11,8 @@ import {
   findUserByEmail,
   getNotifications,
   getWorks,
-  getTasks
+  getTasks,
+  allUsers
 } from "../controllers/user.js";
 import { verifyToken } from "../middleware/verifyToken.js";
 
@@ -45,5 +46,6 @@ router.get("/works", verifyToken, getWorks);
 //get tasks of a user
 router.get("/tasks", verifyToken, getTasks);
 
+router.get("/allusers", verifyToken, allUsers);
 
 export default router;

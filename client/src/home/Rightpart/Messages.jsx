@@ -15,7 +15,7 @@ const MessagesContainer = styled.div`
 const EmptyMessageContainer = styled.div`
   text-align: center;
   margin-top: 20%;
-  color: #9ca3af; /* Tailwind's text-gray-400 */
+  color: ${({ theme }) => theme.text};
 `;
 
 function Messages() {

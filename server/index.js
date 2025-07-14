@@ -26,7 +26,7 @@ const port = 8700;
 
 const connect = () => {
     mongoose.set('strictQuery', true);
-    mongoose.connect(``).then(() => {
+    mongoose.connect(`${process.env.MONGO_URL}`).then(() => {
         console.log('MongoDB connected');
     }).catch((err) => {
         console.log(err);

@@ -15,79 +15,57 @@ import { CircularProgress } from "@mui/material";
 
 const Container = styled.div`
   width: 100%;
+  padding: 20px;
 `;
 
-const Column = styled.div`
+const TopBar = styled.div`
   display: flex;
-  flex-direction: row;
-  @media screen and (max-width: 480px) {
-    flex-direction: column;
-  }
-  justify-content: space-between;
-  margin: 12px 0px;
+  justify-content: flex-start;
+  margin-bottom: 24px;
 `;
-const ItemWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  @media screen and (max-width: 480px) {
-    width: 97%;
-  }
-  padding: 4px;
-  text-align: left;
-  margin: 2px;
+
+const CreateButton = styled.button`
+  padding: 12px 24px;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: bold;
+  background-color: #801ae6;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #6515b3;
+  }
+`;
+
+const Section = styled.div`
+  margin-bottom: 40px;
+`;
+
+const SectionTitle = styled.h3`
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 16px;
   color: ${({ theme }) => theme.text};
 `;
 
-const Span = styled.span`
-  color: ${({ theme }) => theme.soft2};
-  font-weight: 400;
-  margin-left: 8px;
-`;
+const CardGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
 
-const Wrapper = styled.div`
-  padding: 12px 6px;
-`;
+  @media screen and (max-width: 992px) {
+    grid-template-columns: repeat(2, 1fr); /* Tablet */
+  }
 
-const OutlinedBox = styled.div`
-  min-height: 44px;
-  border-radius: 8px;
-  border: 1px solid ${({ theme }) => theme.soft2};
-  color: ${({ theme }) => theme.soft2};
-  ${({ googleButton, theme }) =>
-    googleButton &&
-    `
-    user-select: none; 
-  gap: 16px;`}
-  ${({ button, theme }) =>
-    button &&
-    `
-    user-select: none; 
-  border: none;
-    font-weight: 600;
-    font-size: 16px;
-    background: ${theme.card}; `}
-    ${({ activeButton, theme }) =>
-    activeButton &&
-    `
-    user-select: none; 
-  border: none;
-    background: ${theme.primary};
-    color: white;`}
-    margin-top: 8px;
-  font-weight: 600;
-  font-size: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0px 14px;
-  &:hover {
-    transition: all 0.6s ease-in-out;
-    background: ${({ theme }) => theme.soft};
-    color: white;
+  @media screen and (max-width: 600px) {
+    grid-template-columns: 1fr; /* Mobile */
   }
 `;
+
 
 const Projects = ({newProject,setNewProject}) => {
   const dispatch = useDispatch();
@@ -120,6 +98,7 @@ const Projects = ({newProject,setNewProject}) => {
   const getprojects = async () => {
     await getProjects(token)
       .then((res) => {
+        console.log(res.data);
         setData(res.data);
         console.log(res.data);
         setLoading(false);
@@ -149,46 +128,48 @@ const Projects = ({newProject,setNewProject}) => {
   return (
     <Container>
       {loading ? (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', margin: '12px 0px', height: '300px' }}>
+        <div style={{ display: "flex", justifyContent: "center", padding: "40px" }}>
           <CircularProgress />
         </div>
       ) : (
-        <Column>
+        <>
+          <TopBar>
+            <CreateButton onClick={() => setNewProject(true)}>+ Create New Project</CreateButton>
+          </TopBar>
+
           {statuses.map((s, index) => {
+            const filteredData = data
+              .filter((item) => item.status === s.status)
+              .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
+
+            if (filteredData.length === 0) return null;
+
             return (
-              <ItemWrapper key={index}>
-                {s.icon} {s.status}
-                <Span>
-                  ({data.filter((item) => item.status == s.status).length})
-                </Span>
-                <Wrapper key={index}>
-                  {s.status === "Working" && (
-                    <OutlinedBox button={true} activeButton={false} onClick={() => setNewProject(true)}>
-                      New Project 
-                    </OutlinedBox>
-                  )}
-                  {data
-                    .filter((item) => item.status == s.status)
-                    .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))
-                    .map((item, idx) => (
-                      <Item
-                        key={item._id}
-                        item={item}
-                        index={idx}
-                        status={s}
-                        tagColor={tagColors[3]}
-                        handleUpdate={handleUpdate}
-                        fromcomponent = "projects"
-                      />
-                    ))}
-                </Wrapper>
-              </ItemWrapper>
+              <Section key={index}>
+                <SectionTitle>
+                  {s.icon} {s.status} ({filteredData.length})
+                </SectionTitle>
+                <CardGrid>
+                  {filteredData.map((item, idx) => (
+                    <Item
+                      key={item._id}
+                      item={item}
+                      index={idx}
+                      status={s}
+                      tagColor={tagColors[3]}
+                      handleUpdate={handleUpdate}
+                      fromcomponent="projects"
+                    />
+                  ))}
+                </CardGrid>
+              </Section>
             );
           })}
-        </Column>
+        </>
       )}
     </Container>
   );
 };
 
 export default Projects;
+

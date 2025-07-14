@@ -105,7 +105,7 @@ function App() {
 
                         <Route path="works" element={<Works />} />
                         <Route path="community" element={<Community />} />
-                        <Route path="chats" element={<Chats />} />
+                        <Route path="chats" element={<Chats darkMode={darkMode} />} />
                         <Route path="*" element={<div>Not Found</div>} />
                       </Route>
                     </Routes>

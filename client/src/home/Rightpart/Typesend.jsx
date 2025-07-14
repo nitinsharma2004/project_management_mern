@@ -7,7 +7,7 @@ import useSendMessage from "../../context/useSendMessage.js";
 const Form = styled.form`
   display: flex;
   align-items: center;
-  background-color: #1f2937; /* Tailwind's bg-gray-800 */
+  background-color: ${({ theme }) => theme.bg};
   height: 8vh;
   padding: 0 1rem;
 `;
@@ -23,8 +23,8 @@ const InputField = styled.input`
   border: 1px solid #374151; /* Tailwind's border-gray-700 */
   border-radius: 0.75rem;
   outline: none;
-  background-color: #1e293b; /* Tailwind's bg-slate-900 */
-  color: white;
+  background-color: ${({theme})=>theme.bg};
+  color: ${({theme})=>theme.text};
   font-size: 1rem;
 `;
 

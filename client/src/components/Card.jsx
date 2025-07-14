@@ -9,7 +9,7 @@ import { tagColors } from "../data/data";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Avatar from "@mui/material/Avatar";
-import {format} from 'timeago.js';
+import { format } from 'timeago.js';
 
 const Container = styled.div`
   padding: 14px 14px;
@@ -84,7 +84,7 @@ const Tags = styled.div`
 const Tag = styled.div`
   padding: 4px 10px;
   border-radius: 8px;
-  color: ${({ tagColor,theme }) => tagColor + theme.lightAdd};
+  color: ${({ tagColor, theme }) => tagColor + theme.lightAdd};
   background-color: ${({ tagColor, theme }) => tagColor + "10"};
   font-size: 10px;
   font-weight: 500;
@@ -113,28 +113,28 @@ const AvatarGroup = styled.div`
 `;
 
 
-const Card = ({ tagColor, item, index, status, handleUpdate ,fromcomponent }) => {
+const Card = ({ tagColor, item, index, status, handleUpdate, fromcomponent }) => {
   const ref = useRef(null);
 
   const completeTask = () => {
-    
+
     console.log(item);
-     handleUpdate(item._id,'Completed'); 
-   };
-  
+    handleUpdate(item._id, 'Completed');
+  };
+
   const isCompleted = item.status === "Completed";
 
   return (
     <Fragment>
-        <Link to={`/projects/${item._id}`} style={{ textDecoration: "none" }}>
-          <CardContent item={item} completeTask={completeTask} fromcomponent = {fromcomponent} />
-        </Link>
-       
+      <Link to={`/projects/${item._id}`} style={{ textDecoration: "none" }}>
+        <CardContent item={item} completeTask={completeTask} fromcomponent={fromcomponent} />
+      </Link>
+
     </Fragment>
   );
 };
 
-const CardContent = ({ item, completeTask,fromcomponent }) => {
+const CardContent = ({ item, completeTask, fromcomponent }) => {
   return (
     <Container className="item">
       {item.img && <Image src={item.img} />}
@@ -157,28 +157,34 @@ const CardContent = ({ item, completeTask,fromcomponent }) => {
           <TimelapseRounded sx={{ fontSize: '18px' }} /> Updated {format(item.updatedAt)}
         </Time>
         <AvatarGroup>
-          {item.members.map((member) => (
-            <Avatar
-              key={member.id._id}
-              sx={{ marginRight: '-12px', width: '34px', height: '34px' }}
-              src={member.id.img}
-            >
-              {member.id.name.charAt(0)}
-            </Avatar>
-          ))}
+          {item?.members?.map((member) => {
+            const imgSrc = member?.id?.img;
+            const memberName = member?.id?.name || "U";
+
+            return (
+              <Avatar
+                key={member?.id?._id || Math.random()} // fallback key
+                sx={{ marginRight: "-12px", width: "34px", height: "34px" }}
+                src={imgSrc ? imgSrc : undefined} // Don't pass null to src
+              >
+                {memberName.charAt(0)}
+              </Avatar>
+            );
+          })}
         </AvatarGroup>
-        {fromcomponent === "projects" &&  item.status === "Working"  &&(
-          <button
-            onClick={(e) => {
-              e.stopPropagation(); // Prevent Link navigation
-              completeTask(); // Complete the task
-            }}
-          >
-            Complete
-          </button>
-        )}
-      </Bottom>
-    </Container>
+
+      {fromcomponent === "projects" && item.status === "Working" && (
+        <button
+          onClick={(e) => {
+            e.stopPropagation(); // Prevent Link navigation
+            completeTask(); // Complete the task
+          }}
+        >
+          Complete
+        </button>
+      )}
+    </Bottom>
+    </Container >
   );
 };
 export default Card;

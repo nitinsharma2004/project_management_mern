@@ -7,51 +7,70 @@ import toast from "react-hot-toast";
 
 // Styled Components
 const SearchContainer = styled.div`
-  height: 35px;
-  display: flex;
-  align-items: center;
   padding: 1rem;
+  width: 100%;
+  box-sizing: border-box;
 `;
 
 const Form = styled.form`
   width: 100%;
 `;
 
-const SearchWrapper = styled.label`
-height: 20px;
+const SearchWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  border: 1px solid #374151; /* Tailwind's border-gray-700 */
-  background-color: #1e293b; /* Tailwind's bg-slate-900 */
+  border: 1px solid #374151;
+  // background-color: #1e293b;
   border-radius: 0.5rem;
-  padding: 0.75rem;
-  width: 80%;
+  padding: 0.5rem 0.75rem;
+
+  @media (max-width: 480px) {
+    padding: 0.4rem 0.6rem;
+  }
 `;
 
 const Input = styled.input`
-  flex-grow: 1;
+  flex: 1;
   outline: none;
   background: transparent;
   color: white;
   border: none;
+  font-size: 1rem;
+
+  &::placeholder {
+    color: #9ca3af; /* Tailwind's gray-400 */
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+  }
 `;
 
 const SearchButton = styled.button`
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  // color: #9ca3af;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  transition: background-color 0.3s;
-  padding: 0.5rem;
+  padding-left: 0.5rem;
 
   &:hover {
-    background-color: #4b5563; /* Tailwind's hover:bg-gray-600 */
+    color: white;
+  }
+
+  @media (max-width: 480px) {
+    padding-left: 0.3rem;
   }
 `;
 
 const SearchIcon = styled(FaSearch)`
-  padding: 0.5rem;
+  font-size: 1rem;
+
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+  }
 `;
 
 function Search() {
@@ -61,10 +80,12 @@ function Search() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!search) return;
+    if (!search.trim()) return;
+
     const conversation = allUsers.find((user) =>
       user.name?.toLowerCase().includes(search.toLowerCase())
     );
+
     if (conversation) {
       setSelectedConversation(conversation);
       setSearch("");
@@ -76,19 +97,17 @@ function Search() {
   return (
     <SearchContainer>
       <Form onSubmit={handleSubmit}>
-        <div style={{ display: "flex", gap: "1rem" }}>
-          <SearchWrapper>
-            <Input
-              type="text"
-              placeholder="Search"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-          </SearchWrapper>
-          <SearchButton>
+        <SearchWrapper>
+          <Input
+            type="text"
+            placeholder="Search user..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <SearchButton type="submit">
             <SearchIcon />
           </SearchButton>
-        </div>
+        </SearchWrapper>
       </Form>
     </SearchContainer>
   );

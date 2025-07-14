@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import useConversation from "../../statemanage/useConversation.js";
 import { useSocketContext } from "../../context/SocketContext.jsx";
-
+import { defaultAvatar } from "../Leftpart/User.jsx";
 // Styled Components
 const ChatUserContainer = styled.div`
   padding-left: 1.25rem; /* Tailwind's pl-5 */
@@ -11,11 +11,13 @@ const ChatUserContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem; /* Tailwind's space-x-4 */
-  background-color: #374151; /* Tailwind's bg-gray-700 */
+ background-color: ${({ theme }) => theme.bg};
+  color: ${({ theme }) => theme.text};
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: #4b5563; /* Tailwind's hover:bg-gray-600 */
+     background-color: ${({ theme }) => theme.itemHover};
+
   }
 `;
 
@@ -51,7 +53,7 @@ function Chatuser() {
   return (
     <ChatUserContainer>
       <AvatarContainer isOnline={isOnline}>
-        <img src="" alt="User Avatar" />
+        <img src={defaultAvatar} alt="User Avatar" width={60} />
       </AvatarContainer>
       <UserInfo>
         <UserName>{selectedConversation.name}</UserName>

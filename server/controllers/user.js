@@ -55,7 +55,6 @@ export const getUser = async (req, res, next) => {
         select: "_id name email",
       }
     }).populate("projects").populate("works").populate("tasks");
-    console.log(user)
     res.status(200).json(user);
   } catch (err) {
     console.log(req.user)

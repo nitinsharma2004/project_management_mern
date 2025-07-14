@@ -10,14 +10,16 @@ import { CiMenuFries } from "react-icons/ci";
 // Styled Components
 const RightContainer = styled.div`
   width: 100%;
-  background-color: #1e293b; /* Tailwind's bg-slate-900 */
-  color: #d1d5db; /* Tailwind's text-gray-300 */
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+   background-color: ${({ theme }) => theme.bg};
+  color: ${({ theme }) => theme.text};
 `;
 
 const MessagesWrapper = styled.div`
   flex: 1;
   overflow-y: auto;
-  max-height: calc(88vh - 8vh);
 `;
 
 const NoChatContainer = styled.div`
@@ -27,13 +29,15 @@ const NoChatContainer = styled.div`
   justify-content: center;
   height: 100vh;
   text-align: center;
+  padding: 2rem;
 `;
 
 const DrawerButton = styled.label`
   position: absolute;
   left: 1.25rem; /* Tailwind's left-5 */
+  top: 1.25rem;
   color: white;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   cursor: pointer;
 `;
 
@@ -68,6 +72,7 @@ function Right() {
 
 export default Right;
 
+// Subcomponent for when no chat is selected
 const NoChatSelected = () => {
   const authUser = useSelector((state) => state.user.currentUser);
 

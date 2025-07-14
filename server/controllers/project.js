@@ -62,6 +62,7 @@ export const getProject = async (req, res, next) => {
     var verified = false
     await Promise.all(
       project.members.map(async (Member) => {
+        console.log(Member);
         if (Member.id.id === req.user.id) {
           verified = true
         }
@@ -359,7 +360,6 @@ export const addWork = async (req, res, next) => {
           await project.save();
           const work = await newWork.save();
             
-          console.log(work);
 
           //add the work id to the tasks
           for (let i = 0; i < tasks.length; i++) {
@@ -408,7 +408,6 @@ export const addWork = async (req, res, next) => {
               });
               const notification = await newNotification.save();
 
-              console.log(notification);
               User.findByIdAndUpdate(req
                 .body.tasks[k].members[i], { $push: { notifications: notification._id } }, (err, doc) => {
                   if (err) {

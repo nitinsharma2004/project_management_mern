@@ -5,24 +5,48 @@ import Users from "./Users";
 
 const Container = styled.div`
   width: 30%;
-  background-color: black;
-  color: #d1d5db; /* Tailwind's gray-300 */
+    background-color: ${({ theme }) => theme.bg};
+  color: ${({ theme }) => theme.text};
   display: flex;
   flex-direction: column;
+  height: 100vh;
+
+  @media screen and (max-width: 1024px) {
+    width: 40%;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 50%;
+  }
+
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    height: auto;
+  }
 `;
 
 const Title = styled.h1`
-  display:flex;
-  font-weight:bold;
+  display: flex;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 0;
+  font-size: 20px;
 
-  justify-content:center;
-  align-items:center;
+  @media screen and (max-width: 480px) {
+    font-size: 18px;
+  }
 `;
 
 const UserListContainer = styled.div`
   flex: 1;
   overflow-y: auto;
   min-height: calc(84vh - 10vh);
+
+  @media screen and (max-width: 480px) {
+    min-height: auto;
+    max-height: 400px; /* Adjust based on need */
+  }
 `;
 
 function Left() {

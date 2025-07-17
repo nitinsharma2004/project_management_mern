@@ -18,7 +18,7 @@ export const SocketProvider = ({ children }) => {
     if (authUser) {
       console.log("inside");
       console.log(authUser)
-      const newSocket = io("http://localhost:3000/chats", {
+      const newSocket = io(`${process.env.REACT_APP_FRONT_END_URL}/chats`, {
         query: { userId: authUser._id },
       });
   

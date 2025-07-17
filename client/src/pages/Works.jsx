@@ -3,6 +3,7 @@ import { Fragment, useState, useRef } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import {API} from "../api/index.js";  
 import {
   Add,
   AlignHorizontalLeft,
@@ -435,7 +436,7 @@ const ProjectDetails = () => {
     };
   
     try {
-      const response = await axios.post('http://localhost:8700/api/project/update-data', dataToUpdate);
+      const response = await API.post('/project/update-data', dataToUpdate);
       alert(response.data.message);
       getWorks();
       getTasks();

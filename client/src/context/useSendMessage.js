@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import useConversation from "../statemanage/useConversation.js";
 import axios from "axios";
+import {API} from "../api/index.js";
 const useSendMessage = () => {
   const [loading, setLoading] = useState(false);
   const { messages, setMessage, selectedConversation } = useConversation();
@@ -8,8 +9,8 @@ const useSendMessage = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.post(
-        `http://localhost:8700/api/message/send/${selectedConversation._id}`,{message},{
+      const res = await API.post(
+        `/message/send/${selectedConversation._id}`,{message},{
           credentials: "include",
             headers: {
               Authorization: `Bearer ${token}`,

@@ -10,9 +10,8 @@ import { useSelector } from "react-redux";
 import Skeleton from "@mui/material/Skeleton";
 import { useCookies } from "react-cookie";
 import { getProjects } from "../api/index";
-import AddNewProject from "../components/AddNewProject";
 import { CircularProgress } from "@mui/material";
-
+import {API} from "../api/index"; 
 const Container = styled.div`
   width: 100%;
   padding: 20px;
@@ -85,7 +84,7 @@ const Projects = ({newProject,setNewProject}) => {
     };
   
     try {
-      const response = await axios.post('http://localhost:8700/api/project/update-project-data', dataToUpdate);
+      const response = await API.post('/project/update-project-data', dataToUpdate);
       alert(response.data.message);
       getProjects();
     } catch (error) {

@@ -20,9 +20,13 @@ const SearchWrapper = styled.div`
   display: flex;
   align-items: center;
   border: 1px solid #374151;
-  // background-color: #1e293b;
   border-radius: 0.5rem;
-  padding: 0.5rem 0.75rem;
+  padding: 0.6rem 0.9rem;
+  background-color: #1f2937;
+
+  @media (max-width: 768px) {
+    padding: 0.5rem 0.8rem;
+  }
 
   @media (max-width: 480px) {
     padding: 0.4rem 0.6rem;
@@ -38,7 +42,11 @@ const Input = styled.input`
   font-size: 1rem;
 
   &::placeholder {
-    color: #9ca3af; /* Tailwind's gray-400 */
+    color: #9ca3af;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.95rem;
   }
 
   @media (max-width: 480px) {
@@ -50,18 +58,18 @@ const SearchButton = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
-  // color: #9ca3af;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-left: 0.5rem;
+  padding-left: 0.6rem;
+  color: #9ca3af;
 
   &:hover {
     color: white;
   }
 
   @media (max-width: 480px) {
-    padding-left: 0.3rem;
+    padding-left: 0.4rem;
   }
 `;
 

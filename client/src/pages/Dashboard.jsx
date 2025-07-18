@@ -12,7 +12,11 @@ import { openSnackbar } from "../redux/snackbarSlice";
 import { getProjects, userTasks } from "../api";
 
 const Container = Styled.div`
-  padding: 10px;
+  padding: 10px 20px;
+
+  @media screen and (max-width: 480px) {
+    padding: 10px;
+  }
 `;
 
 const Section = Styled.div`
@@ -20,6 +24,10 @@ const Section = Styled.div`
   flex-direction: row;
   gap: 20px;
   flex-wrap: wrap;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const Left = Styled.div`
@@ -27,13 +35,21 @@ const Left = Styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const Right = Styled.div`
   flex: 1;
-  display: flex;
+  display: flex-start;
   flex-direction: column;
   gap: 20px;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const TopBar = Styled.div`
@@ -41,6 +57,11 @@ const TopBar = Styled.div`
   justify-content: flex-end;
   gap: 16px;
   margin: 20px 0;
+
+  @media screen and (max-width: 480px) {
+    flex-direction: column;
+    align-items: flex-end;
+  }
 `;
 
 const CreateButton = Styled.div`
@@ -68,6 +89,12 @@ const CreateButton = Styled.div`
       background: linear-gradient(76.35deg, #FFC107 15.89%, #FFC107 89.75%);
     }
   `}
+
+  @media screen and (max-width: 480px) {
+    padding: 14px 20px;
+    font-size: 14px;
+    gap: 10px;
+  }
 `;
 
 const Icon = Styled.div`
@@ -81,6 +108,10 @@ const StatsWrapper = Styled.div`
   display: grid;
   grid-template-columns: repeat(2, minmax(250px, 1fr));
   gap: 24px;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const StatCard = Styled.div`
@@ -99,6 +130,10 @@ const Title = Styled.div`
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 10px;
+
+  @media screen and (max-width: 480px) {
+    font-size: 16px;
+  }
 `;
 
 const Progress = Styled.div`
@@ -111,6 +146,10 @@ const Progress = Styled.div`
 const ProgressText = Styled.div`
   font-size: 28px;
   font-weight: 600;
+
+  @media screen and (max-width: 480px) {
+    font-size: 22px;
+  }
 `;
 
 const Desc = Styled.div`
@@ -127,6 +166,10 @@ const SectionTitle = Styled.div`
   font-size: 22px;
   font-weight: 600;
   margin: 20px 0 10px;
+
+  @media screen and (max-width: 480px) {
+    font-size: 18px;
+  }
 `;
 
 const CardWrapper = Styled.div`

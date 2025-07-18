@@ -1,28 +1,39 @@
 import styled, { ThemeProvider } from "styled-components";
+import { useState } from "react";
 import { AuthProvider } from "../context/AuthProvider";
 import { SocketProvider } from "../context/SocketContext";
 import Left from "../home/Leftpart/Left";
 import Right from "../home/Rightpart/Right";
-import { useState } from "react";
 import { darkTheme, lightTheme } from "../utils/Theme";
-
 
 const Container = styled.div`
   display: flex;
   height: 100vh;
-  background-color: ${({ theme }) => theme.bg};
-  color: ${({ theme }) => theme.text};
+  overflow: hidden;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
-const Chats = ( {darkMode}) => {
+const Chats = ({ darkMode }) => {
+  const [activeChat, setActiveChat] = useState(null);
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <AuthProvider>
         <SocketProvider>
           <Container>
-            <Left />
-            <Right />
+            <Left
+              onSelectChat={setActiveChat}
+              activeChat={activeChat}
+            />
+            <Right
+              activeChat={activeChat}
+              goBack={() => setActiveChat(null)}
+                onSelectChat={setActiveChat}
+              
+            />
           </Container>
         </SocketProvider>
       </AuthProvider>

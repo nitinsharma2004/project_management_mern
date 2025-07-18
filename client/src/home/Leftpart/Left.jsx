@@ -5,11 +5,12 @@ import Users from "./Users";
 
 const Container = styled.div`
   width: 30%;
-    background-color: ${({ theme }) => theme.bg};
+  background-color: ${({ theme }) => theme.bg};
   color: ${({ theme }) => theme.text};
   display: flex;
   flex-direction: column;
   height: 100vh;
+  min-width: 280px;
 
   @media screen and (max-width: 1024px) {
     width: 40%;
@@ -19,7 +20,7 @@ const Container = styled.div`
     width: 50%;
   }
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 600px) {
     width: 100%;
     height: auto;
   }
@@ -27,38 +28,54 @@ const Container = styled.div`
 
 const Title = styled.h1`
   display: flex;
-  font-weight: bold;
+  font-weight: 600;
   justify-content: center;
   align-items: center;
   padding: 16px 0;
-  font-size: 20px;
+  font-size: 1.5rem;
+  text-align: center;
+  background-color: ${({ theme }) => theme.soft};
+
+  @media screen and (max-width: 768px) {
+    font-size: 1.25rem;
+  }
 
   @media screen and (max-width: 480px) {
-    font-size: 18px;
+    font-size: 1.1rem;
+    padding: 12px 0;
   }
 `;
 
 const UserListContainer = styled.div`
   flex: 1;
   overflow-y: auto;
-  min-height: calc(84vh - 10vh);
+  padding: 8px 12px;
+  min-height: calc(100vh - 60px);
+
+  @media screen and (max-width: 600px) {
+    max-height: 70vh;
+    padding: 8px;
+  }
 
   @media screen and (max-width: 480px) {
-    min-height: auto;
-    max-height: 400px; /* Adjust based on need */
+    max-height: 65vh;
   }
 `;
 
-function Left() {
+function Left({ onSelectChat, activeChat }) {
+  const isMobile = window.innerWidth <= 768;
+
   return (
-    <Container>
+    <Container style={{ display: isMobile && activeChat ? "none" : "flex" }}>
       <Title>Chats</Title>
       <Search />
       <UserListContainer>
-        <Users />
+        <Users onSelectChat={onSelectChat} />
       </UserListContainer>
     </Container>
   );
 }
+
+
 
 export default Left;

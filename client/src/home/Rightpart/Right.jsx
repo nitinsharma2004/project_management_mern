@@ -5,25 +5,46 @@ import Messages from "./Messages";
 import Typesend from "./Typesend";
 import useConversation from "../../statemanage/useConversation.js";
 import { useSelector } from "react-redux";
-import { CiMenuFries } from "react-icons/ci";
+import { IoArrowBack } from "react-icons/io5";
 
-// Styled Components
+// ✅ Container
 const RightContainer = styled.div`
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-   background-color: ${({ theme }) => theme.bg};
-  color: ${({ theme }) => theme.text};
-`;
-
-const MessagesWrapper = styled.div`
   flex: 1;
-  overflow-y: auto;
+  background-color: ${({ theme }) => theme.bg};
+  color: ${({ theme }) => theme.text};
+  height: 100vh;
+  position: relative;
+
+  @media screen and (max-width: 768px) {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+  }
 `;
 
+// ✅ Back Button
+const BackButton = styled.button`
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: ${({ theme }) => theme.text};
+  cursor: pointer;
+  z-index: 1001;
+  margin-bottom: 10px;
+
+  @media screen and (min-width: 769px) {
+    display: none;
+  }
+`;
+
+// ✅ No Chat Container
 const NoChatContainer = styled.div`
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,60 +53,61 @@ const NoChatContainer = styled.div`
   padding: 2rem;
 `;
 
-const DrawerButton = styled.label`
-  position: absolute;
-  left: 1.25rem; /* Tailwind's left-5 */
-  top: 1.25rem;
-  color: white;
-  font-size: 1.5rem;
-  cursor: pointer;
+const MessagesWrapper = styled.div`
+  flex: 1;
+  overflow-y: auto;
 `;
 
 const UserName = styled.span`
   font-weight: 600;
-  font-size: 1.25rem; /* Tailwind's text-xl */
+  font-size: 1.25rem;
 `;
 
-function Right() {
-  const { selectedConversation, setSelectedConversation } = useConversation();
+const NoChatSelected = () => {
+  const authUser = useSelector((state) => state.user.currentUser);
+  return (
+    <NoChatContainer>
+      <h1>
+        Welcome <UserName>{authUser?.name}</UserName>
+        <br />
+        No chat selected, please select a conversation.
+      </h1>
+    </NoChatContainer>
+  );
+};
+
+function Right({ activeChat, goBack,onSelectChat }) {
+ const { setSelectedConversation } = useConversation();
 
   useEffect(() => {
     return () => setSelectedConversation(null);
   }, [setSelectedConversation]);
 
+  const isMobile = window.innerWidth <= 768;
+   if (isMobile && activeChat===true){
+    onSelectChat(false); 
+   }
   return (
-    <RightContainer>
-      {!selectedConversation ? (
+
+  <>
+      {!activeChat ? (
         <NoChatSelected />
+        
       ) : (
-        <>
+        <RightContainer >
+          <BackButton onClick={goBack}>
+            <IoArrowBack /> Back
+          </BackButton>
           <Chatuser />
           <MessagesWrapper>
             <Messages />
           </MessagesWrapper>
           <Typesend />
-        </>
-      )}
-    </RightContainer>
+        </RightContainer>
+      )
+    }
+    </>
   );
 }
 
 export default Right;
-
-// Subcomponent for when no chat is selected
-const NoChatSelected = () => {
-  const authUser = useSelector((state) => state.user.currentUser);
-
-  return (
-    <NoChatContainer>
-      <DrawerButton htmlFor="my-drawer-2">
-        <CiMenuFries />
-      </DrawerButton>
-      <h1>
-        Welcome <UserName>{authUser.name}</UserName>
-        <br />
-        No chat selected, please start a conversation by selecting a contact.
-      </h1>
-    </NoChatContainer>
-  );
-};

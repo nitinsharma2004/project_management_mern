@@ -57,8 +57,7 @@ const UserList = styled.div`
     max-height: calc(100vh - 160px);
   }
 `;
-
-function Users() {
+function Users({ onSelectChat }) {
   const [allUsers, loading] = useGetAllUsers();
 
   return (
@@ -66,11 +65,12 @@ function Users() {
       <MessagesHeader>Messages</MessagesHeader>
       <UserList>
         {allUsers.map((user, index) => (
-          <User key={index} user={user} />
+          <User key={index} user={user} onSelectChat={onSelectChat} />
         ))}
       </UserList>
     </UsersContainer>
   );
 }
+
 
 export default Users;

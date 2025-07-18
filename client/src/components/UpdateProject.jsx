@@ -3,25 +3,14 @@ import React, { useState, useEffect } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import styled from "styled-components";
 import {
-    Block,
     CloseRounded,
-    EmailRounded,
-    Visibility,
-    VisibilityOff,
-    PasswordRounded,
-    TroubleshootRounded,
-    SendRounded,
-    SearchOutlined,
+   
 } from "@mui/icons-material";
 import { tools } from "../data/data";
 import { Avatar } from "@mui/material";
 import { useSelector } from "react-redux";
 import {
-    inviteTeamMembers,
-    inviteProjectMembers,
     searchUsers,
-    createProject,
-    addTeamProject,
     updateProject,
     updateMembers,
     removeMembers,
@@ -151,16 +140,6 @@ const AddMember = styled.div`
   padding: 12px;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.bgDark + "98"};
-`;
-
-const Search = styled.div`
-  margin: 6px 6px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 12px;
-  color: ${({ theme }) => theme.textSoft};
-  background-color: ${({ theme }) => theme.bgDark};
 `;
 
 const Input = styled.input`
@@ -319,57 +298,12 @@ const UpdateProject = ({ openUpdate, setOpenUpdate }) => {
 
     const [search, setSearch] = React.useState("");
     const [users, setUsers] = React.useState([]);
-    const { currentUser } = useSelector((state) => state.user);
-    const [role, setRole] = useState("");
     const [access, setAccess] = useState("");
     const [selectedUsers, setSelectedUsers] = React.useState([]);
     const [inputs, setInputs] = useState({ id: openUpdate.data._id, img: openUpdate.data.img, title: openUpdate.data.title, desc: openUpdate.data.desc, tags: openUpdate.data.tags, tools: openUpdate.data.tools, members: openUpdate.data.members });
 
     const token = localStorage.getItem("token");
-    const handleSearch = async (e) => {
-        setSearch(e.target.value);
-        searchUsers(e.target.value, token)
-            .then((res) => {
-                if (res.status === 200) {
-                    setUsers(res.data);
-                }
-                else {
-                    setUsers([]);
-                }
-            })
-            .catch((err) => {
-                setUsers([]);
-            });
-    };
-
-    const handleSelect = (user) => {
-        const User = {
-            id: user._id,
-            name: user.name,
-            email: user.email,
-        };
-        if (selectedUsers.find((u) => u.id === User.id)) {
-        } else {
-            setSelectedUsers([...selectedUsers, {
-                id: user._id,
-                name: user.name,
-                email: user.email,
-                role: role,
-                access: access,
-            }]);
-            setUsers([]);
-            setAccess("");
-            setRole("");
-            setSearch("");
-        }
-    };
-
-    //remove members from selected users
-    const handleRemove = (user) => {
-        setSelectedUsers(selectedUsers.filter((u) => u.id !== user.id));
-    };
-
-
+    
     const handleChange = (e) => {
         setInputs((prev) => {
             if (e.target.name === "tags") {

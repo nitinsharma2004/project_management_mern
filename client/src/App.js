@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import { ThemeProvider } from "styled-components";
 import { useState } from "react";
 import { darkTheme, lightTheme } from "./utils/Theme";
@@ -22,8 +21,6 @@ import Community from './pages/Community';
 import { useSelector } from "react-redux";
 import AddNewTeam from './components/AddNewTeam';
 import { useEffect } from 'react';
-import { getUsers } from './api';
-import { useDispatch } from 'react-redux';
 import Home from './pages/Home/Home';
 import Chats from './pages/Chats';
 import ProjectInvite from './components/ProjectInvite';
@@ -52,7 +49,6 @@ function App() {
   const [newTeam, setNewTeam] = useState(false);
   const [newProject, setNewProject] = useState(false);
   const { open, message, severity } = useSelector((state) => state.snackbar);
-  const [loading, setLoading] = useState(false);
 
 
   const { currentUser } = useSelector(state => state.user);
@@ -79,7 +75,6 @@ function App() {
         <BrowserRouter>
           {currentUser ?
             <Container >
-              {loading ? <div>Loading...</div> : <>
                 {menuOpen && <Menu setMenuOpen={setMenuOpen} setDarkMode={setDarkMode} darkMode={darkMode} setNewTeam={setNewTeam} />}
                 <Main>
                   <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
@@ -111,7 +106,7 @@ function App() {
                     </Routes>
                   </Wrapper>
                 </Main>
-              </>}
+             
             </Container>
             : <ThemeProvider theme={darkTheme}
             >

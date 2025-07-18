@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { Fragment, useState, useRef } from "react";
+import {  useState } from "react";
 import styled from "styled-components";
 import { CloseRounded } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
@@ -47,20 +46,6 @@ const Title = styled.div`
   -webkit-box-orient: vertical;
 `;
 
-const Desc = styled.div`
-  font-size: 14px;
-  font-weight: 400;
-  color: ${({ theme }) => theme.soft2};
-  margin-top: 4px;
-  line-height: 1.5;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 5; /* number of lines to show */
-  line-clamp: 5;
-  -webkit-box-orient: vertical;
-`;
-
 const Task = styled.div`
   margin: 12px 0px;
 `;
@@ -88,9 +73,6 @@ const MemberGroup = styled.div`
   border-radius: 100px;
 `;
 
-const IcoButton = styled(IconButton)`
-  color: ${({ theme }) => theme.textSoft} !important;
-`;
 
 const TextBtn = styled.div`
   flex: 0.6;

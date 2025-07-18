@@ -1,23 +1,14 @@
-import { IconButton, Modal, Snackbar } from "@mui/material";
+import { IconButton, Modal } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import styled from "styled-components";
 import {
-  Block,
   CloseRounded,
-  EmailRounded,
-  Visibility,
-  VisibilityOff,
-  PasswordRounded,
-  TroubleshootRounded,
-  SendRounded,
   SearchOutlined,
 } from "@mui/icons-material";
 import { tools } from "../data/data";
 import { Avatar } from "@mui/material";
-import { useSelector } from "react-redux";
 import {
-  inviteProjectMembers,
   inviteTeamMembers,
   searchUsers,
   createTeam
@@ -298,7 +289,6 @@ const AddNewTeam = ({ setNewTeam }) => {
 
   const [search, setSearch] = React.useState("");
   const [users, setUsers] = React.useState([]);
-  const { currentUser } = useSelector((state) => state.user);
   const [role, setRole] = useState("");
   const [access, setAccess] = useState("");
   const [selectedUsers, setSelectedUsers] = React.useState([]);

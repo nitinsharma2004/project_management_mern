@@ -5,12 +5,9 @@ import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightne
 import { Link } from "react-router-dom";
 import {
   Add,
-  Dashboard,
   CloseRounded,
   Groups2Rounded,
-  HubRounded,
   Logout,
-  StreamRounded,
   WorkspacesRounded,
   Public,
   AccountTreeRounded,
@@ -22,12 +19,10 @@ import LogoIcon from "../Images/Logo.jpg";
 import { useDispatch } from "react-redux";
 import { logout } from "../redux/userSlice";
 import { openSnackbar } from "../redux/snackbarSlice";
-import axios from "axios";
 import { useSelector } from "react-redux";
-import { getUsers, notifications } from "../api/index";
+import { getUsers } from "../api/index";
 import { useNavigate } from 'react-router-dom';
 import { Avatar, CircularProgress } from "@mui/material";
-import Skeleton from "@mui/material/Skeleton";
 
 const Container = styled.div`
   flex: 1.3;

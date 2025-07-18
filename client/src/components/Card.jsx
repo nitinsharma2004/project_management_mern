@@ -1,13 +1,8 @@
-import React from "react";
-import { Fragment, useState, useRef } from "react";
+import { Fragment,  } from "react";
 import styled from "styled-components";
-import { MoreHoriz, TimelapseRounded } from "@mui/icons-material";
-import { LinearProgress } from "@mui/material";
-import { useDrag, useDrop } from "react-dnd";
-import ITEM_TYPE from "../data/types";
+import { TimelapseRounded } from "@mui/icons-material";
 import { tagColors } from "../data/data";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import Avatar from "@mui/material/Avatar";
 import { format } from 'timeago.js';
 
@@ -114,7 +109,6 @@ const AvatarGroup = styled.div`
 
 
 const Card = ({ tagColor, item, index, status, handleUpdate, fromcomponent }) => {
-  const ref = useRef(null);
 
   const completeTask = () => {
 
@@ -122,7 +116,6 @@ const Card = ({ tagColor, item, index, status, handleUpdate, fromcomponent }) =>
     handleUpdate(item._id, 'Completed');
   };
 
-  const isCompleted = item.status === "Completed";
 
   return (
     <Fragment>

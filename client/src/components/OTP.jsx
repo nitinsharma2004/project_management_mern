@@ -116,7 +116,7 @@ const OTP = ({ email, name, otpVerified, setOtpVerified, reason }) => {
     }
 
     const startTimer = (e) => {
-        let { total, hours, minutes, seconds }
+        let { total, minutes, seconds }
             = getTimeRemaining(e);
         if (total >= 0) {
 

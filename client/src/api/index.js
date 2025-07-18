@@ -1,12 +1,11 @@
 import axios from 'axios';
-import jwt_decode from 'jwt-decode';
 
-export const API = axios.create({ baseURL: `http://localhost:8700/api/` }); 
+// export const API = axios.create({ baseURL: `http://localhost:8700/api/` }); 
 
 
 // export const API = axios.create({ baseURL: `https://team-collab-mntv.onrender.com/api/` }); 
 
-// export const API = axios.create({ baseURL: `https://teamcollab.up.railway.app/api/` }); 
+export const API = axios.create({ baseURL: `https://teamcollab.up.railway.app/api/` }); 
 
 
 //auth

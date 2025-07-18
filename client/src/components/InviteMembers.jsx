@@ -1,6 +1,6 @@
 import { CloseRounded, SearchOutlined, SendRounded } from "@mui/icons-material";
 import { Modal } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Avatar } from "@mui/material";
 import { useSelector } from "react-redux";
@@ -164,10 +164,8 @@ const InviteButton = styled.button`
 `;
 
 const InviteMembers = ({ setInvitePopup, id, teamInvite }) => {
-  const [search, setSearch] = React.useState("");
   const [users, setUsers] = React.useState([]);
   const [message, setMessage] = React.useState("");
-  const { currentUser } = useSelector((state) => state.user);
   const token = localStorage.getItem("token");
 
   const [role, setRole] = React.useState("Member");
@@ -175,7 +173,6 @@ const InviteMembers = ({ setInvitePopup, id, teamInvite }) => {
   const [Loading, setLoading] = React.useState(false);
 
   const handleSearch = async (e) => {
-    setSearch(e.target.value);
     searchUsers(e.target.value, token)
       .then((res) => {
         if (res.status === 200) {

@@ -1,5 +1,4 @@
 import {
-  Block,
   CloseRounded,
   EmailRounded,
   Visibility,

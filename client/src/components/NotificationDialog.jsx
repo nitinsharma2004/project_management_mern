@@ -1,8 +1,6 @@
 import { Avatar, Popover } from "@mui/material";
-import React from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
-import { logout } from "../redux/userSlice";
+
 
 const Wrapper = styled.div`
   width: 100%;

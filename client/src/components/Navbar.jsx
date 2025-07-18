@@ -3,8 +3,7 @@ import styled from "styled-components";
 import SearchIcon from "@mui/icons-material/Search";
 import { useSelector } from "react-redux";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import SignUp from "./SignUp";
-import SignIn from "./SignIn";
+
 import MenuIcon from "@mui/icons-material/Menu";
 import { IconButton } from "@mui/material";
 import { Forum, NotificationsRounded } from "@mui/icons-material";
@@ -14,7 +13,6 @@ import Avatar from "@mui/material/Avatar";
 import AccountDialog from "./AccountDialog";
 import NotificationDialog from "./NotificationDialog";
 import { getUsers, notifications } from "../api/index";
-import { openSnackbar } from "../redux/snackbarSlice";
 import { logout } from "../redux/userSlice";
 import { useNavigate } from "react-router-dom";
 

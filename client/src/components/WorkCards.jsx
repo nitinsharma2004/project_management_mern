@@ -1,24 +1,17 @@
 import React, { useEffect } from "react";
-import { Fragment, useState, useRef } from "react";
+import {  useState } from "react";
 import styled from "styled-components";
 import {
-  ImportantDevices,
   MoreVert,
   TimelapseRounded,
   StarsRounded
 } from "@mui/icons-material";
 import LinearProgress, {
-  linearProgressClasses,
 } from "@mui/material/LinearProgress";
 import { format } from "timeago.js";
-import { useDrag, useDrop } from "react-dnd";
-import ITEM_TYPE from "../data/types";
 import { tagColors } from "../data/data";
-import { Link } from "react-router-dom";
-import { color } from "@mui/system";
+
 import { Avatar, IconButton } from "@mui/material";
-import WorkDetails from "./WorkDetails";
-import axios from "axios";
 
 const Container = styled.div`
   padding: 14px;
@@ -144,7 +137,6 @@ const WorkCards = ({ status, work ,handleUpdate,from }) => {
   const [completed, setCompleted] = useState(0);
   const [progress, setProgress] = useState(0);
   const [members, setMembers] = useState([]);
-  const [openWork, setOpenWork] = useState(false);
 
   useEffect(() => {
     if (status === "Completed") {
@@ -245,7 +237,7 @@ const WorkCards = ({ status, work ,handleUpdate,from }) => {
           )}
         </AvatarGroup>
       </Bottom>
-      {work.status !== "Completed" && from == "works" ? (
+      {work.status !== "Completed" && from === "works" ? (
   <button onClick={(e) => { e.stopPropagation(); completeTask(); }}>Complete</button>
 ) : null}
 

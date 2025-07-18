@@ -10,7 +10,6 @@ import {
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useTheme } from "styled-components";
-import Google from "../Images/google.svg";
 import { IconButton, Modal } from "@mui/material";
 import { loginFailure, loginStart, loginSuccess } from "../redux/userSlice";
 import { openSnackbar } from "../redux/snackbarSlice";

@@ -14,10 +14,8 @@ export const SocketProvider = ({ children }) => {
   const [authUser] = useAuth();
 
   useEffect(() => {
-    console.log("outside");
+    
     if (authUser) {
-      console.log("inside");
-      console.log(authUser)
       const newSocket = io(`${process.env.REACT_APP_BACKEND_URL}`, {
         query: { userId: authUser._id },
         withCredentials: true,

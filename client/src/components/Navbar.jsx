@@ -133,7 +133,6 @@ const Navbar = ({ menuOpen, setMenuOpen }) => {
     try {
       notifications(token).then((res) => {
         setNotification(res.data);
-        console.log(notification);
       });
     } catch (error) {
       console.log(error);
@@ -152,7 +151,6 @@ const Navbar = ({ menuOpen, setMenuOpen }) => {
       setSignInOpen(false);
       setSignUpOpen(true);
     }
-    console.log(currentUser);
     if (currentUser && !currentUser.verified) {
       setVerifyEmail(true);
     } else {

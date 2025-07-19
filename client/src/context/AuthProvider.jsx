@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const initialUserState = useSelector((state)=>state.user.currentUser)
-   console.log(initialUserState);
   const [authUser, setAuthUser] = useState(
     initialUserState ? initialUserState : undefined
   );

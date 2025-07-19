@@ -18,16 +18,18 @@ export const SocketProvider = ({ children }) => {
     if (authUser) {
       console.log("inside");
       console.log(authUser)
-      const newSocket = io(`${process.env.REACT_APP_FRONT_END_URL}/chats`, {
+      const newSocket = io(`${process.env.REACT_APP_BACKEND_URL}`, {
         query: { userId: authUser._id },
+        withCredentials: true,
       });
-  
+
+
       setSocket(newSocket);
-  
+
       newSocket.on("getOnlineUsers", (users) => {
         setOnlineUsers(users);
       });
-  
+
       return () => {
         newSocket.disconnect(); // Proper disconnection
         setSocket(null);
@@ -40,7 +42,7 @@ export const SocketProvider = ({ children }) => {
       }
     }
   }, [authUser]);
-  
+
   return (
     <socketContext.Provider value={{ socket, onlineUsers }}>
       {children}

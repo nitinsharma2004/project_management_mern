@@ -11,7 +11,7 @@ const MessagesWrapper = styled.div`
   height: calc(100vh - 120px); /* Adjust based on your layout */
   overflow-y: auto;
   padding: 1rem;
-  background-color: #0f172a; /* Optional: Dark background */
+  background-color: ${({ theme }) => theme.bg };
   display: flex;
   flex-direction: column;
 

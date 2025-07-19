@@ -40,7 +40,7 @@ const SendButton = styled.button`
 
 const SendIcon = styled(IoSend)`
   font-size: 1.75rem; /* Tailwind's text-3xl */
-  color: white;
+  color: ${({ theme }) => theme.text};
 `;
 
 function Typesend() {

@@ -9,7 +9,7 @@ const UsersContainer = styled.div`
   flex-direction: column;
   height: 100vh;
   width: 100%;
-  background-color: ${({ theme }) => theme.sidebarBg || "#0f172a"};
+  background-color: ${({ theme }) => theme.bg};
 `;
 
 // ✅ Header

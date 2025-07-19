@@ -3,15 +3,18 @@ import styled from "styled-components";
 import User from "./User";
 import useGetAllUsers from "../../context/useGetAllUsers";
 
-// Styled Components
+// ✅ Outer container (fixed height, column layout)
 const UsersContainer = styled.div`
   display: flex;
   flex-direction: column;
+  height: 100vh;
   width: 100%;
+  background-color: ${({ theme }) => theme.sidebarBg || "#0f172a"};
 `;
 
+// ✅ Header
 const MessagesHeader = styled.h1`
-  padding: 0.5rem 2rem;
+  padding: 0.75rem 2rem;
   color: white;
   font-weight: 600;
   background-color: #1e293b;
@@ -29,13 +32,12 @@ const MessagesHeader = styled.h1`
   }
 `;
 
+// ✅ Scrollable list
 const UserList = styled.div`
-  padding-top: 0.5rem;
   flex: 1;
   overflow-y: auto;
-  max-height: calc(84vh - 10vh);
+  padding: 0.5rem 0;
 
-  /* Optional: Better scrollbar UI */
   &::-webkit-scrollbar {
     width: 6px;
   }
@@ -48,15 +50,15 @@ const UserList = styled.div`
   &::-webkit-scrollbar-track {
     background: #1e293b;
   }
-
-  @media (max-width: 768px) {
-    max-height: calc(100vh - 180px);
-  }
-
-  @media (max-width: 480px) {
-    max-height: calc(100vh - 160px);
-  }
 `;
+
+// ✅ Optional: Loading text
+const LoadingText = styled.p`
+  color: #ccc;
+  text-align: center;
+  margin-top: 2rem;
+`;
+
 function Users({ onSelectChat }) {
   const [allUsers, loading] = useGetAllUsers();
 
@@ -64,13 +66,16 @@ function Users({ onSelectChat }) {
     <UsersContainer>
       <MessagesHeader>Messages</MessagesHeader>
       <UserList>
-        {allUsers.map((user, index) => (
-          <User key={index} user={user} onSelectChat={onSelectChat} />
-        ))}
+        {loading ? (
+          <LoadingText>Loading users...</LoadingText>
+        ) : (
+          allUsers.map((user, index) => (
+            <User key={user._id || index} user={user} onSelectChat={onSelectChat} />
+          ))
+        )}
       </UserList>
     </UsersContainer>
   );
 }
-
 
 export default Users;

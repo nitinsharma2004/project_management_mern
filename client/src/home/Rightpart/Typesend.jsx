@@ -10,6 +10,7 @@ const Form = styled.form`
   background-color: ${({ theme }) => theme.bg};
   height: 8vh;
   padding: 0 1rem;
+  
 `;
 
 const InputContainer = styled.div`

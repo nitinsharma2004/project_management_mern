@@ -8,13 +8,13 @@ import { darkTheme, lightTheme } from "../utils/Theme";
 
 const Container = styled.div`
   display: flex;
-  height: 100vh;
-  overflow: hidden;
+  height: 85%;
 
   @media screen and (max-width: 768px) {
     flex-direction: column;
   }
 `;
+
 
 const Chats = ({ darkMode }) => {
   const [activeChat, setActiveChat] = useState(null);

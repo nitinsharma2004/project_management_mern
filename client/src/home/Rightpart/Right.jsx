@@ -7,12 +7,13 @@ import useConversation from "../../statemanage/useConversation.js";
 import { useSelector } from "react-redux";
 import { IoArrowBack } from "react-icons/io5";
 
-// ✅ Container
 const RightContainer = styled.div`
   flex: 1;
   background-color: ${({ theme }) => theme.bg};
   color: ${({ theme }) => theme.text};
-  height: 100vh;
+  min-height: 100dvh; /* ✅ Responsive height */
+  display: flex;
+  flex-direction: column;
   position: relative;
 
   @media screen and (max-width: 768px) {
@@ -24,8 +25,13 @@ const RightContainer = styled.div`
     transition: transform 0.3s ease-in-out;
   }
 `;
+const TypesendWrapper = styled.div`
+  position: relative;
+  bottom: 0;
+  width: 100%;
+`;
 
-// ✅ Back Button
+
 const BackButton = styled.button`
   position: absolute;
   top: 10px;
@@ -43,7 +49,6 @@ const BackButton = styled.button`
   }
 `;
 
-// ✅ No Chat Container
 const NoChatContainer = styled.div`
   display: flex;
   align-items: center;
@@ -76,23 +81,23 @@ const NoChatSelected = () => {
   );
 };
 
-function Right({ activeChat, goBack,onSelectChat }) {
- const { setSelectedConversation } = useConversation();
+function Right({ activeChat, goBack, onSelectChat }) {
+  const { setSelectedConversation } = useConversation();
 
   useEffect(() => {
     return () => setSelectedConversation(null);
   }, [setSelectedConversation]);
 
   const isMobile = window.innerWidth <= 768;
-   if (isMobile && activeChat===true){
-    onSelectChat(false); 
-   }
+  if (isMobile && activeChat === true) {
+    onSelectChat(false);
+  }
   return (
 
-  <>
+    <>
       {!activeChat ? (
         <NoChatSelected />
-        
+
       ) : (
         <RightContainer >
           <BackButton onClick={goBack}>
@@ -102,10 +107,12 @@ function Right({ activeChat, goBack,onSelectChat }) {
           <MessagesWrapper>
             <Messages />
           </MessagesWrapper>
-          <Typesend />
+          <TypesendWrapper>
+            <Typesend />
+          </TypesendWrapper>
         </RightContainer>
       )
-    }
+      }
     </>
   );
 }
